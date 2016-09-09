@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" 
+    href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css"/>
+</head>
+<body ng-app="ngAdvanced">
+  <div   ng-controller="InterpolateController" class="container">
+	<h3> <span ng-bind="person1"></span></h3> 
+	<h3> <span ng-bind="person2"></span></h3> 
+  <h3> <span ng-bind="person3"></span></h3>
+  <h3> <span ng-bind="person4"></span></h3>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js">
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script>
+  //https://www.webcodegeeks.com/javascript/angular-js/magic-parse-service-angularjs/
+  (function() {
+  angular.module('ngAdvanced', [])
+  .controller('InterpolateController', 
+    ['$scope', '$interpolate', function(scp, interpolate) {
+    var interpolateFn = interpolate('{{name | uppercase}} lives in {{city}}');
+
+    var p1 = {name: 'Golu', city: 'New Delhi'};
+    var p2 = {name: 'Saurabh', city: 'Pune'};
+    var p3 = {name: 'Praveen', city: 'Mumbai'};
+
+    scp.person1 = interpolateFn(p1);
+    scp.person2 = interpolateFn(p2);
+    scp.person3 = interpolateFn(p3);
+    scp.person4 = interpolateFn({name: 'An alien', city: 'the Orion constellation'});
+  }]);//InterpolateController
+ 
+})();
+  </script>
+
+</body>
+</html>
